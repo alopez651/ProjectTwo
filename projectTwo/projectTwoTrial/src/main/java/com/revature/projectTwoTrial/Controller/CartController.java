@@ -27,6 +27,7 @@ public class CartController {
     }
 
     // getting movie by default id
+    // https://howtodoinjava.com/spring5/webmvc/controller-getmapping-postmapping/
     @GetMapping("/{id}")
     public CartEntity getById(@PathVariable("id" )Long id){
         return cartService.getById(id);

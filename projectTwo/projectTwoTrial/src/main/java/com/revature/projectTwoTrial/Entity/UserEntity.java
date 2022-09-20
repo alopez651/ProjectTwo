@@ -16,6 +16,7 @@ import java.util.List;
 public class UserEntity {
     @Id
     @GeneratedValue
+
     private long id;
     private String name;
     private String lastName;
@@ -28,6 +29,7 @@ public class UserEntity {
     @OneToMany(targetEntity = CartEntity.class, cascade = CascadeType.ALL)
     // setting the column in the past table
     @JoinColumn(name = "person_fk", referencedColumnName = "id")
+    // @JoinColumn(name = "person_fk", referencedColumnName = "id")
     private List<CartEntity> addCart;
 
     public UserEntity(){

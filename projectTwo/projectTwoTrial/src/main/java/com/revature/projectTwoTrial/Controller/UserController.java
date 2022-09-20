@@ -29,6 +29,7 @@ public class UserController {
     // this shows that the user with its giving id is purchasing a movie with its giving id
     @PatchMapping("/{userId}/carts/{movieId}")
     public UserEntity addToCart(@PathVariable("userId") Long userId, @PathVariable("movieId") Long movieId){
+        //public UserEntity addToCart(@PathVariable("userId") Long userId, @PathVariable("movieId") Long movieId){
         return userService.addToCart(userId, movieId);
     }
 

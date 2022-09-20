@@ -26,6 +26,7 @@ public class UserService {
 
     public UserEntity login(UserEntity user){
         // check if this is okay instead of username
+//        UserEntity uDB = userRepository.findById(user.getUsername()).get();
         UserEntity uDB = userRepository.findById(user.getId()).get();
         if(user.getPassword().equals(uDB.getPassword()))
             return uDB;
@@ -34,6 +35,7 @@ public class UserService {
     }
 
     public UserEntity addToCart(Long userId, Long movieId){
+        //public UserEntity addToCart(Long userId, Long movieId){
         CartEntity cart = cartRepository.findById(movieId).get();
         UserEntity users = userRepository.findById(userId).get();
 
