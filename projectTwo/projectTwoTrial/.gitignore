@@ -33,3 +33,4 @@ build/
 .vscode/
 
 src/main/resources/dev.properties
+projectTwo/projectTwoTrial/src/main/resources/dev.properties
