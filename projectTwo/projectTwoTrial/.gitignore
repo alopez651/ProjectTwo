@@ -32,5 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-src/main/resources/dev.properties
-projectTwo/projectTwoTrial/src/main/resources/dev.properties
+!**/src/main/**/resources
