@@ -1,6 +1,6 @@
 package com.revature.projectTwoTrial.Validator;
 
-import com.revature.projectTwoTrial.Entity.UserEntity;
+import com.revature.projectTwoTrial.Entity.User;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
@@ -8,17 +8,17 @@ public class AccountValidator implements org.springframework.validation.Validato
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return clazz.equals(UserEntity.class);
+        return clazz.equals(User.class);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "name.empty");
-        UserEntity userEntity = (UserEntity) target;
+        User user = (User) target;
 
-        if(userEntity.getName().contains("$")){
+        if(user.getName().contains("$")){
             errors.reject("name", "Can't contain $");
-        } if(userEntity.getId() < 0){
+        } if(user.getId() < 0){
             errors.reject("id", "id cannot be negative");
         }
     }

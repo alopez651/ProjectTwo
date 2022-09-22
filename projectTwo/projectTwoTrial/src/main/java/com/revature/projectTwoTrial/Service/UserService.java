@@ -1,13 +1,11 @@
 package com.revature.projectTwoTrial.Service;
 
-import com.revature.projectTwoTrial.Entity.CartEntity;
-import com.revature.projectTwoTrial.Entity.UserEntity;
-import com.revature.projectTwoTrial.Repository.CartRepository;
+import com.revature.projectTwoTrial.Entity.Product;
+import com.revature.projectTwoTrial.Entity.User;
+import com.revature.projectTwoTrial.Repository.ProductRepository;
 import com.revature.projectTwoTrial.Repository.UserRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.ls.LSException;
 
 import java.util.List;
 
@@ -17,27 +15,27 @@ public class UserService {
     UserRepository userRepository;
 
     @Autowired
-    CartRepository cartRepository;
+    ProductRepository productRepository;
 
-    public UserEntity register(UserEntity users){
+    public User register(User users){
         userRepository.save(users);
         return users;
     }
 
-    public UserEntity login(UserEntity user){
+    public User login(User user){
         // check if this is okay instead of username
-//        UserEntity uDB = userRepository.findById(user.getUsername()).get();
-        UserEntity uDB = userRepository.findById(user.getId()).get();
+//        User uDB = userRepository.findById(user.getUsername()).get();
+        User uDB = userRepository.findById(user.getId()).get();
         if(user.getPassword().equals(uDB.getPassword()))
             return uDB;
         else
             return null;
     }
 
-    public UserEntity addToCart(Long userId, Long movieId){
-        //public UserEntity addToCart(Long userId, Long movieId){
-        CartEntity cart = cartRepository.findById(movieId).get();
-        UserEntity users = userRepository.findById(userId).get();
+    public User addToCart(Long userId, Long movieId){
+        //public User addToCart(Long userId, Long movieId){
+        Product cart = productRepository.findById(movieId).get();
+        User users = userRepository.findById(userId).get();
 
         // updating users Cart
         users.addToCart(cart);
@@ -48,8 +46,8 @@ public class UserService {
     }
 
     // return movies to current users id
-    public List<CartEntity> getMovies(Long userId){
-        return cartRepository.findMovies(userId);
+    public List<Product> getMovies(Long userId){
+        return productRepository.findMovies(userId);
     }
 
 

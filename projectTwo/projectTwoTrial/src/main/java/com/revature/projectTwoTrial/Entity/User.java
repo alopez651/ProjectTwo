@@ -2,7 +2,6 @@ package com.revature.projectTwoTrial.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 
-public class UserEntity {
+public class User {
     @Id
     @GeneratedValue
 
@@ -26,18 +25,18 @@ public class UserEntity {
     private String password;
 
     // setting up relationship between cart and user
-    @OneToMany(targetEntity = CartEntity.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
     // setting the column in the past table
     @JoinColumn(name = "person_fk", referencedColumnName = "id")
     // @JoinColumn(name = "person_fk", referencedColumnName = "id")
-    private List<CartEntity> addCart;
+    private List<Product> addCart;
 
-    public UserEntity(){
+    public User(){
         // empty list
         addCart = new ArrayList<>();
     }
 
-    public void addToCart(CartEntity cart) {
+    public void addToCart(Product cart) {
         addCart.add(cart);
     }
 }

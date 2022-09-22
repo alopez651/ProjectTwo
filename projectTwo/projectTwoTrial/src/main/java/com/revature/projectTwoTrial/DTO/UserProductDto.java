@@ -1,7 +1,7 @@
 package com.revature.projectTwoTrial.DTO;
 
-import com.revature.projectTwoTrial.Entity.CartEntity;
-import com.revature.projectTwoTrial.Entity.UserEntity;
+import com.revature.projectTwoTrial.Entity.Product;
+import com.revature.projectTwoTrial.Entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class UserCartDto {
-    UserEntity users;
-    CartEntity cart;
+public class UserProductDto {
+    User users;
+    Product cart;
 
 }
