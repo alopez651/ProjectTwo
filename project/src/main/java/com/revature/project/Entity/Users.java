@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 
-public class User {
+public class Users {
     @Id
     @GeneratedValue
 
@@ -32,7 +32,7 @@ public class User {
     // @JoinColumn(name = "person_fk", referencedColumnName = "id")
     private List<Product> addProduct;
 
-    public User(){
+    public Users(){
         // empty list
         addProduct = new ArrayList<>();
     }

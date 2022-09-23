@@ -1,7 +1,7 @@
 package com.revature.project.DTO;
 
 import com.revature.project.Entity.Product;
-import com.revature.project.Entity.User;
+import com.revature.project.Entity.Users;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class UserProductDto {
-    User users;
+    Users users;
     Product product;
 
 }

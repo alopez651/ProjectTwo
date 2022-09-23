@@ -1,6 +1,6 @@
 package com.revature.project.Validator;
 
-import com.revature.project.Entity.User;
+import com.revature.project.Entity.Users;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
@@ -8,17 +8,17 @@ public class AccountValidator implements org.springframework.validation.Validato
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return clazz.equals(User.class);
+        return clazz.equals(Users.class);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "name.empty");
-        User user = (User) target;
+        Users users = (Users) target;
 
-        if(user.getName().contains("$")){
+        if(users.getName().contains("$")){
             errors.reject("name", "Can't contain $");
-        } if(user.getId() < 0){
+        } if(users.getId() < 0){
             errors.reject("id", "id cannot be negative");
         }
     }

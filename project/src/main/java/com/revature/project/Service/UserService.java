@@ -1,7 +1,7 @@
 package com.revature.project.Service;
 
 import com.revature.project.Entity.Product;
-import com.revature.project.Entity.User;
+import com.revature.project.Entity.Users;
 import com.revature.project.Repository.ProductRepository;
 import com.revature.project.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @CrossOrigin(origins = "*")
 @Service
@@ -19,25 +20,33 @@ public class UserService {
     @Autowired
     ProductRepository productRepository;
 
-    public User register(User users){
+    public Users register(Users users){
         userRepository.save(users);
         return users;
     }
 
-    public User login(User users){
+    public Users login(Users users){
         // check if this is okay instead of username
-//        User uDB = userRepository.findById(user.getUsername()).get();
-        User uDB = userRepository.findById(users.getId()).get();
-        if(users.getPassword().equals(uDB.getPassword()))
-            return uDB;
-        else
+//        Users uDB = userRepository.findById(user.getUsername()).get();
+//        Users uDB = userRepository.findById(users.getId()).get();
+//        if(users.getPassword().equals(uDB.getPassword()))
+//            return uDB;
+//        else
+//            return null;
+        Users uDB;
+        try{
+            uDB = userRepository.findById(users.getId()).get();
+            if(!users.getPassword().equals(uDB.getPassword()))
+                return null;
+        } catch(NoSuchElementException e){
             return null;
+        }   return uDB;
     }
 
-    public User addToCart(Long userId, Long movieId){
-        //public User addToCart(Long userId, Long movieId){
+    public Users addToCart(Long userId, Long movieId){
+        //public Users addToCart(Long userId, Long movieId){
         Product product = productRepository.findById(movieId).get();
-        User users = userRepository.findById(userId).get();
+        Users users = userRepository.findById(userId).get();
 
         // updating users Cart
         users.addToCart(product);
