@@ -49,8 +49,8 @@ public class UserService {
         Users users = userRepository.findById(userId).get();
 
         // updating users Cart
-        users.addToCart(product);
-
+        //users.addToCart(product);
+        users.getAddProduct().add(product);
         // persist this change to the database
         userRepository.save(users);
         return users;

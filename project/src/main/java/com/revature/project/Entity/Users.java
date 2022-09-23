@@ -3,13 +3,14 @@ package com.revature.project.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-//@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 
@@ -32,12 +33,12 @@ public class Users {
     // @JoinColumn(name = "person_fk", referencedColumnName = "id")
     private List<Product> addProduct;
 
-    public Users(){
-        // empty list
-        addProduct = new ArrayList<>();
-    }
-
-    public void addToCart(Product product) {
-        addProduct.add(product);
-    }
+//    public Users(){
+//        // empty list
+//        addProduct = new ArrayList<>();
+//    }
+//
+//    public void addToCart(Product product) {
+//        addProduct.add(product);
+//    }
 }
