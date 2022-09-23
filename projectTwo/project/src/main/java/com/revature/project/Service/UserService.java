@@ -1,0 +1,79 @@
+package com.revature.project.Service;
+
+import com.revature.project.Entity.Product;
+import com.revature.project.Entity.Users;
+import com.revature.project.Repository.ProductRepository;
+import com.revature.project.Repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+import java.util.List;
+import java.util.NoSuchElementException;
+
+@CrossOrigin(origins = "*")
+@Service
+public class UserService {
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    ProductRepository productRepository;
+
+    public Users register(Users users){
+        userRepository.save(users);
+        return users;
+    }
+
+    public Users login(Users users){
+        // check if this is okay instead of username
+//        Users uDB = userRepository.findById(user.getUsername()).get();
+//        Users uDB = userRepository.findById(users.getId()).get();
+//        if(users.getPassword().equals(uDB.getPassword()))
+//            return uDB;
+//        else
+//            return null;
+        Users uDB;
+        try{
+            uDB = userRepository.findById(users.getId()).get();
+            if(!users.getPassword().equals(uDB.getPassword()))
+                return null;
+        } catch(NoSuchElementException e){
+            return null;
+        }   return uDB;
+    }
+
+    public Users addToCart(Long userId, Long movieId){
+        //public Users addToCart(Long userId, Long movieId){
+        Product product = productRepository.findById(movieId).get();
+        Users users = userRepository.findById(userId).get();
+
+        // updating users Cart
+        //users.addToCart(product);
+        users.getAddProduct().add(product);
+        // persist this change to the database
+        userRepository.save(users);
+        return users;
+    }
+    public Users getById(Long id) {
+        return userRepository.findById(id).get();
+    }
+
+    public void checkout(Long userId) {
+        Users users = getById((userId));
+        // add the current cart to previous orders:
+        users.getPrevious().add(users.getCurrent());
+        // reset the current cart to be empty (removing all the items)
+        users.setCurrent(new Product());
+        // persist
+        userRepository.save(users);
+    }
+    // return movies to current users id
+    public List<Product> getMovies(Long userId){
+        return productRepository.findMovies(userId);
+    }
+
+
+
+}
+// https://dzone.com/articles/how-to-get-current-logged-in-username-in-spring-se
