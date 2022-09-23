@@ -24,11 +24,11 @@ public class UserService {
         return users;
     }
 
-    public User login(User user){
+    public User login(User users){
         // check if this is okay instead of username
 //        User uDB = userRepository.findById(user.getUsername()).get();
-        User uDB = userRepository.findById(user.getId()).get();
-        if(user.getPassword().equals(uDB.getPassword()))
+        User uDB = userRepository.findById(users.getId()).get();
+        if(users.getPassword().equals(uDB.getPassword()))
             return uDB;
         else
             return null;
