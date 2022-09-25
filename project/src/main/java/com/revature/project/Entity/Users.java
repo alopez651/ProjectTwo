@@ -29,16 +29,8 @@ public class Users {
     // setting up relationship between cart and user
     @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
     // setting the column in the past table
-    @JoinColumn(name = "person_fk", referencedColumnName = "id")
+    @JoinColumn(name = "users_fk", referencedColumnName = "id")
     // @JoinColumn(name = "person_fk", referencedColumnName = "id")
-    private List<Product> addProduct;
+    private List<Product> addProduct, products;
 
-//    public Users(){
-//        // empty list
-//        addProduct = new ArrayList<>();
-//    }
-//
-//    public void addToCart(Product product) {
-//        addProduct.add(product);
-//    }
 }

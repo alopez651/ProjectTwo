@@ -28,15 +28,24 @@ public class UserController {
     }
     // sample request: localhost:/8080/people/1/pets/4
     // this shows that the user with its giving id is purchasing a movie with its giving id
-    @PatchMapping("/{userId}/products/{movieId}")
-    public Users addToCart(@PathVariable("userId") Long userId, @PathVariable("movieId") Long movieId){
+    // @PatchMapping("/{userId}/products/{movieId}")
+    @PatchMapping("/{userId}/products/{productId}")
+    //public Users addToCart(@PathVariable("userId") Long userId, @PathVariable("movieId") Long movieId){
+    public Users addToCart(@PathVariable("userId") Long userId, @PathVariable("productId") Long productId){
         //public Users addToCart(@PathVariable("userId") Long userId, @PathVariable("movieId") Long movieId){
-        return userService.addToCart(userId, movieId);
+        return userService.addToCart(userId, productId);
     }
 
     // returning movies to current user
     @GetMapping("/{userId}/products")
-    public List<Product> getMovies(@PathVariable("userId") Long id){
-        return userService.getMovies(id);
+    public List<Product> getProduct(@PathVariable("userId") Long id){
+        return userService.getProduct(id);
     }
+
+    @PutMapping()
+    public Users update(@RequestBody Users users){
+        return userService.update(users);
+    }
+
+    // returning users history
 }

@@ -43,9 +43,9 @@ public class UserService {
         }   return uDB;
     }
 
-    public Users addToCart(Long userId, Long movieId){
+    public Users addToCart(Long userId, Long productId){
         //public Users addToCart(Long userId, Long movieId){
-        Product product = productRepository.findById(movieId).get();
+        Product product = productRepository.findById(productId).get();
         Users users = userRepository.findById(userId).get();
 
         // updating users Cart
@@ -57,10 +57,21 @@ public class UserService {
     }
 
     // return movies to current users id
-    public List<Product> getMovies(Long userId){
-        return productRepository.findMovies(userId);
+    public List<Product> getProduct(Long userId){
+        return productRepository.findAddProduct(userId);
     }
 
+
+    //Mosaab return history of products purchased for a user "not sure if it is correct
+    public List<Product> findMovies(Long userId) {
+        Users user = userRepository.findById(userId).get();
+        return user.getProducts();
+    }
+//    //Mosaab update user profile
+    public Users update(Users users) {
+        userRepository.save(users);
+        return users;
+    }
 
 
 }

@@ -23,6 +23,7 @@ public class ProductController {
     }
 
     // getting all movies
+    @CrossOrigin(origins = "*")
     @GetMapping()
     public List<Product> getAll(){
         return productService.getAll();
@@ -30,6 +31,7 @@ public class ProductController {
 
     // getting movie by default id
     // https://howtodoinjava.com/spring5/webmvc/controller-getmapping-postmapping/
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public Product getById(@PathVariable("id" )Long id){
         return productService.getById(id);
@@ -46,4 +48,10 @@ public class ProductController {
     public void delete(@PathVariable("id") Long id){
         productService.delete(id);
     }
+
+    // return list of all products
+//    @GetMapping
+//    public List<Product> getAll(){
+//        return productService.getAll();
+//    }
 }
