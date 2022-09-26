@@ -63,7 +63,7 @@ public class UserService {
 
 
     //Mosaab return history of products purchased for a user "not sure if it is correct
-    public List<Product> findMovies(Long userId) {
+    public List<Product> findPurchasedProducts(Long userId) {
         Users user = userRepository.findById(userId).get();
         return user.getProducts();
     }

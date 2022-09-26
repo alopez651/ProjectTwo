@@ -47,5 +47,9 @@ public class UserController {
         return userService.update(users);
     }
 
-    // returning users history
+    // Mosaab/ history for a user purchased products
+    @GetMapping("/{userId}/products/{productId}")
+    public List<Product> findPreviouslyPurshasedProducts(@PathVariable("userId") Long userId) {
+        return userService.findPurchasedProducts(userId);
+    }
 }
