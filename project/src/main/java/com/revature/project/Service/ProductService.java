@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+
 @Service
 public class ProductService {
     // injecting the repository bean into this class
@@ -44,5 +44,9 @@ public class ProductService {
     public void delete(Long id){
         productRepository.deleteById(id);
     }
+//    public void add(Product product){
+//        productRepository.save(product);
+//    }
+
 
 }

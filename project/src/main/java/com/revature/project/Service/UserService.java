@@ -1,13 +1,16 @@
 package com.revature.project.Service;
 
+//import com.revature.project.Entity.Cart;
 import com.revature.project.Entity.Product;
 import com.revature.project.Entity.Users;
 import com.revature.project.Repository.ProductRepository;
 import com.revature.project.Repository.UserRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -26,32 +29,36 @@ public class UserService {
     }
 
     public Users login(Users users){
-        // check if this is okay instead of username
-//        Users uDB = userRepository.findById(user.getUsername()).get();
-//        Users uDB = userRepository.findById(users.getId()).get();
-//        if(users.getPassword().equals(uDB.getPassword()))
-//            return uDB;
-//        else
+//        Users uDB;
+//        try{
+//            uDB = userRepository.findById(users.getId()).get();
+//            if(!users.getPassword().equals(uDB.getPassword()))
+//                return null;
+//        } catch(NoSuchElementException e){
 //            return null;
+//        }   return uDB;
         Users uDB;
         try{
-            uDB = userRepository.findById(users.getId()).get();
+            uDB = userRepository.findByUsername(users.getUsername());
             if(!users.getPassword().equals(uDB.getPassword()))
                 return null;
-        } catch(NoSuchElementException e){
+        } catch (NoSuchElementException e){
             return null;
-        }   return uDB;
+        }
+        return uDB;
     }
+//    public Users getById(Long id){
+//        return userRepository.findById(id).get();
+//    }
 
     public Users addToCart(Long userId, Long productId){
-        //public Users addToCart(Long userId, Long movieId){
+
         Product product = productRepository.findById(productId).get();
+
         Users users = userRepository.findById(userId).get();
 
-        // updating users Cart
-        //users.addToCart(product);
         users.getAddProduct().add(product);
-        // persist this change to the database
+
         userRepository.save(users);
         return users;
     }
@@ -68,11 +75,27 @@ public class UserService {
         return user.getProducts();
     }
 //    //Mosaab update user profile
+
     public Users update(Users users) {
         userRepository.save(users);
         return users;
     }
 
+
+//    public Users getById(Users users){
+//        Users up;
+//        try{
+//            up = userRepository.findById(users.getId()).get();
+//        } catch (NoSuchElementException e){
+//            return null;
+//        }
+//        return up;
+//    }
+//
+
+    public Users getById(Long id) {
+        return userRepository.findById(id).get();
+    }
 
 }
 // https://dzone.com/articles/how-to-get-current-logged-in-username-in-spring-se

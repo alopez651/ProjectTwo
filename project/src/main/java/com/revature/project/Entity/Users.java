@@ -9,9 +9,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
+
+//@NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Entity
 
 public class Users {
@@ -26,11 +27,15 @@ public class Users {
     private String username;
     private String password;
 
-    // setting up relationship between cart and user
     @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
-    // setting the column in the past table
+   // @OneToMany(targetEntity = Cart.class, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "users_fk", referencedColumnName = "id")
-    // @JoinColumn(name = "person_fk", referencedColumnName = "id")
     private List<Product> addProduct, products;
 
+
+//, products
+    public Users (){
+        this.addProduct = new ArrayList<>();
+        this.products = new ArrayList<>();
+    }
 }

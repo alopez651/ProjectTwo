@@ -49,9 +49,4 @@ public class ProductController {
         productService.delete(id);
     }
 
-    // return list of all products
-//    @GetMapping
-//    public List<Product> getAll(){
-//        return productService.getAll();
-//    }
 }
