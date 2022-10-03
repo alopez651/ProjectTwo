@@ -24,17 +24,4 @@
       - need to be in the app file in order to run
         - C:\Users\Ana\Desktop\ProjectTwoApp\projectTwo-app\src\app>
     - Run both frontend and backend at the same time in order to work.
-
-### Project-Two retro
-  1. What feature/aspect of your project are you most proud of?
-     - A feature that I'm most proud of is the login feature. 
-  2. What are some challenges you faced while working on the project?
-     - One of them was time management and communication with the team. 
-  3. What would you work on if you had another week on project 2?
-     - I work on getting the checkout section to work and the hosting our project.
-  4. What would you do differently if you could start the project over?
-     - I would do some things sooner.
-  5. What do you wish you knew at the start of the project (either about the development process or the technologies used)?
-     - Learn a bit more about AWS, specifically when one gets errors. 
-  6. How can you apply these lessons to project 3?
-     - I would try to fix the error's we had when attempting to host our project. 
+ 
